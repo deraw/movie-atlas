@@ -3,11 +3,8 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/test-utils',
-    '@nuxt/ui',
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/test-utils', '@nuxt/ui', '@nuxt/image'],
+  css: ['~/assets/css/main.css'],
   typescript: {
     typeCheck: true,
   },
