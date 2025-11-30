@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'FilmExplorer - Catalogue de films TMDB',
+      title: 'MovieAtlas - Catalogue de films TMDB',
       meta: [
         { name: 'description', content: 'Catalogue de films basé sur TMDB avec Nuxt 4 + Nuxt UI' },
       ],
