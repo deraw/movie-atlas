@@ -13,4 +13,10 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+  runtimeConfig: {
+    tmdbToken: process.env.TMDB_V4_TOKEN,
+    public: {
+      tmdbImageBase: 'https://image.tmdb.org/t/p',
+    },
+  },
 })
