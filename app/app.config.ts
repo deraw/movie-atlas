@@ -16,7 +16,8 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        root: 'rounded-xl'
+        root: 'rounded-xl',
+        body: 'h-full'
       }
     }
   }

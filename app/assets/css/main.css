@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@theme {
+  --text-xs: 0.8em;
+  --text-sm: 1em;
+  --text-base: 1.125em;
+  --text-lg: 1.25em;
+  --text-xl: 1.5em;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.25s ease;
