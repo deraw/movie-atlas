@@ -9,12 +9,12 @@ export default defineEventHandler(async (): Promise<TrendingMoviesPayload> => {
       Authorization: `Bearer ${config.tmdbToken}`
     },
     params: {
-      language: 'fr-FR'
+      language: config.public.appLocale
     }
   })
 
   // Keep only necessary fields and limit to 10 results
-  const results = data.results.slice(0, 10).map((movie: any) => ({
+  const results = data.results.slice(0, 10).map(movie => ({
     id: movie.id,
     title: movie.title,
     overview: movie.overview,
