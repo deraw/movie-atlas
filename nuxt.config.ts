@@ -13,6 +13,18 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+  app: {
+    head: {
+      title: 'FilmExplorer - Catalogue de films TMDB',
+      meta: [
+        { name: 'description', content: 'Catalogue de films basé sur TMDB avec Nuxt 4 + Nuxt UI' },
+      ],
+    },
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in',
+    },
+  },
   runtimeConfig: {
     tmdbToken: process.env.TMDB_V4_TOKEN,
     public: {
