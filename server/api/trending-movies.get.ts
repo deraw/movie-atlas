@@ -1,10 +1,11 @@
-import type { TmdbTrendingResponse, TrendingMoviesPayload } from './types/tmdb'
+import type { TmdbTrendingResponse } from '#shared/types/tmdb'
+import type { TrendingMoviesPayload } from '#shared/types/movies'
 
 export default defineEventHandler(async (): Promise<TrendingMoviesPayload> => {
   const config = useRuntimeConfig()
 
   // @see https://developer.themoviedb.org/reference/trending-movies
-  const data = await $fetch<TmdbTrendingResponse>('https://api.themoviedb.org/3/trending/movie/day', {
+  const data = await $fetch<TmdbTrendingResponse>(`${config.tmdbApiUrl}/trending/movie/day`, {
     headers: {
       Authorization: `Bearer ${config.tmdbToken}`
     },
