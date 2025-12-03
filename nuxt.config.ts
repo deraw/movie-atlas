@@ -61,6 +61,7 @@ export default defineNuxtConfig({
     public: {
       tmdbImageBase: 'https://image.tmdb.org/t/p',
       appLocale: APP_LOCALE,
+      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:3000',
     },
   },
 })

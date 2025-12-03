@@ -1,5 +1,6 @@
 <script setup lang="ts">
   const route = useRoute()
+  const config = useRuntimeConfig()
   const { getImageUrl } = useTmdbImage()
 
   const movieId = computed(() => route.params.id as string)
@@ -28,9 +29,49 @@
   }
 
   if (import.meta.server) {
+    const defaultOgImage = `${config.public.appUrl}/og-default.jpg`
+
     useSeoMeta({
-      title: () => movie.value ? `${movie.value.title} | MovieAtlas` : 'Détail du film | MovieAtlas',
-      description: () => movie.value?.overview ?? ''
+      title: () => movie.value
+          ? `${movie.value.title} – MovieAtlas`
+          : 'Détails du film – MovieAtlas',
+      description: () =>
+        movie.value?.overview ||
+        'Découvrez les détails de ce film sur MovieAtlas : synopsis, note et recommandations.',
+      ogTitle: () =>
+        movie.value
+          ? `${movie.value.title} – MovieAtlas`
+          : 'Détails du film – MovieAtlas',
+
+      ogDescription: () =>
+        movie.value?.overview ||
+        'Découvrez les détails de ce film sur MovieAtlas : synopsis, note et recommandations.',
+      ogType: () => 'video.movie',
+      ogUrl: () =>
+        `${config.public.appUrl}/movie/${movieId.value}`,
+      ogImage: () => {
+        if (movie.value?.backdrop_path) {
+          return getImageUrl(movie.value.backdrop_path, 'w1280') || defaultOgImage
+        }
+
+        return defaultOgImage
+      },
+
+      twitterCard: () => 'summary_large_image',
+      twitterTitle: () =>
+        movie.value
+          ? `${movie.value.title} – MovieAtlas`
+          : 'Détails du film – MovieAtlas',
+      twitterDescription: () =>
+        movie.value?.overview ||
+        'Découvrez les détails de ce film sur MovieAtlas : synopsis, note et recommandations.',
+      twitterImage: () => {
+        if (movie.value?.backdrop_path) {
+          return getImageUrl(movie.value.backdrop_path, 'w1280') || defaultOgImage
+        }
+
+        return defaultOgImage
+      }
     })
   }
 </script>

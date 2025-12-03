@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  const config = useRuntimeConfig()
+
   const { data, pending, error } = await useFetch('/api/trending-movies')
 
   const movies = computed(() => data.value?.results ?? [])
@@ -7,7 +9,11 @@
   if (import.meta.server) {
     useSeoMeta({
       title: 'Films tendance aujourd’hui | MovieAtlas',
-      description: 'Top 10 des films tendance aujourd’hui grâce à TMDB.'
+      description: 'Top 10 des films tendance aujourd’hui grâce à TMDB.',
+
+      ogTitle: 'MovieAtlas – Les films tendance du jour',
+      ogDescription: 'Top des films populaires du moment, avec synopsis, notes et recommandations.',
+      ogUrl: config.public.appUrl,
     })
   }
 </script>
