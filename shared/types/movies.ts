@@ -32,20 +32,12 @@ export interface MovieDetails extends MovieSummary {
 }
 
 export interface TrendingMoviesPayload {
-  results: {
-    id: number
-    title: string
-    overview: string
-    vote_average: number
-    release_date: string
-    poster_path: string | null
-    backdrop_path: string | null
-  }[]
+  results: MovieSummary[]
 }
 
 export interface MovieDetailsPayload {
   movie: MovieDetails
   cast: TmdbCastMember[]
   recommendations: MovieSummary[]
-  videos: MovieVideo[]
+  trailer: MovieVideo | null
 }

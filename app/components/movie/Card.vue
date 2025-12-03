@@ -30,7 +30,7 @@
 
         <div
           v-else
-          class="w-full h-full flex items-center justify-center bg-slate-800 text-xs text-slate-300"
+          class="w-full h-full flex items-center justify-center bg-slate-800 text-slate-300"
         >
           Aucune affiche
         </div>
@@ -50,7 +50,7 @@
 
         <time
           :datetime="movie.release_date"
-          class="text-xs text-slate-400"
+          class="text-slate-400"
         >
           {{ formatDateShort(movie.release_date) }}
         </time>
@@ -65,7 +65,11 @@
           Détails
         </UButton>
 
-        <UButton size="md" variant="ghost" icon="i-heroicons-heart" />
+        <UButton
+          variant="ghost"
+          color="neutral"
+          icon="i-heroicons-heart"
+        />
       </div>
     </div>
   </UCard>

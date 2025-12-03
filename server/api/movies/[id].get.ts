@@ -66,10 +66,15 @@ export default defineEventHandler(async (event): Promise<MovieDetailsPayload> =>
 
   const videos: MovieVideo[] = data.videos?.results ?? []
 
+  const trailer =
+    videos.find(
+      video => video.site === 'YouTube' && video.type === 'Trailer'
+    ) ?? null
+
   return {
     movie,
     cast,
     recommendations,
-    videos
+    trailer
   }
 })
