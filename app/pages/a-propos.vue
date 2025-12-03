@@ -1,15 +1,9 @@
 <script setup lang="ts">
-  const config = useRuntimeConfig()
-
-  if (import.meta.server) {
-    useSeoMeta({
-      title: 'À propos – MovieAtlas',
-      description: 'En savoir plus sur MovieAtlas, un projet Nuxt dédié à l’exploration de films via l’API TMDB.',
-      ogTitle: 'À propos – MovieAtlas',
-      ogDescription: 'En savoir plus sur MovieAtlas, un projet Nuxt dédié à l’exploration de films via l’API TMDB.',
-      ogUrl: `${config.public.appUrl}/favoris`
-    })
-  }
+  usePageSeo({
+    title: 'À propos – MovieAtlas',
+    description: 'En savoir plus sur MovieAtlas, un projet Nuxt dédié à l’exploration de films via l’API TMDB.',
+    path: '/a-propos'
+  })
 </script>
 
 <template>

@@ -9,20 +9,17 @@
   const { isFavorite, toggleFavorite } = useFavorites()
 
   const toggleHeroFavorite = () => {
-    if (!heroMovie.value) return
+    if (!heroMovie.value) {
+      return
+    }
+
     toggleFavorite(heroMovie.value)
   }
 
-  if (import.meta.server) {
-    useSeoMeta({
-      title: 'Films tendance aujourd’hui | MovieAtlas',
-      description: 'Top 10 des films tendance aujourd’hui grâce à TMDB.',
-
-      ogTitle: 'MovieAtlas – Les films tendance du jour',
-      ogDescription: 'Top des films populaires du moment, avec synopsis, notes et recommandations.',
-      ogUrl: config.public.appUrl,
-    })
-  }
+  usePageSeo({
+    title: 'Films tendance aujourd’hui - MovieAtlas',
+    description: 'Top des films populaires du moment, avec synopsis, notes et recommandations.'
+  })
 </script>
 
 <template>

@@ -1,16 +1,11 @@
 <script setup lang="ts">
-  const config = useRuntimeConfig()
   const { favorites, isReady } = useFavorites()
 
-  if (import.meta.server) {
-    useSeoMeta({
-      title: 'Catalogue – MovieAtlas',
-      description: 'Parcourez le catalogue complet de films disponibles sur MovieAtlas.',
-      ogTitle: 'Catalogue – MovieAtlas',
-      ogDescription: 'Découvrez tous les films disponibles dans le catalogue MovieAtlas.',
-      ogUrl: `${config.public.appUrl}/catalogue`
-    })
-  }
+  usePageSeo({
+    title: 'Vos favoris – MovieAtlas',
+    description: 'Retrouvez ici tous les films que vous avez ajoutés à vos favoris sur MovieAtlas.',
+    path: '/favoris'
+  })
 </script>
 
 <template>
