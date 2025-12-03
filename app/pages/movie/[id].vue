@@ -27,6 +27,16 @@
     isTrailerOpen.value = true
   }
 
+  const router = useRouter()
+  const goBack = () => {
+    if (window.history.length > 1) {
+      router.back()
+      return
+    }
+
+    router.push('/')
+  }
+
   if (import.meta.server) {
     useSeoMeta({
       title: () => movie.value ? `${movie.value.title} | MovieAtlas` : 'Détail du film | MovieAtlas',
@@ -62,6 +72,20 @@
       v-else-if="movie"
       class="space-y-10"
     >
+      <div>
+        <UButton
+          color="neutral"
+          variant="ghost"
+          icon="i-heroicons-arrow-left"
+          class="text-sm"
+          @click="goBack"
+        >
+            <span class="sr-only sm:not-sr-only">
+              Retour à la page précédente
+            </span>
+        </UButton>
+      </div>
+
       <MovieHero
         :title="movie.title"
         :backdrop="movie.backdrop_path"
