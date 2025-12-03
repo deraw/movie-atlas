@@ -22,12 +22,37 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Catalogue de films basé sur TMDB avec Nuxt 4 + Nuxt UI' },
       ],
       htmlAttrs: {
-        lang: APP_LOCALE
-      }
+        lang: APP_LOCALE,
+      },
     },
     pageTransition: {
       name: 'page',
       mode: 'out-in',
+    },
+  },
+  routeRules: {
+    '/': {
+      isr: 60,
+    },
+    '/movie/**': {
+      isr: 3600,
+    },
+    '/catalogue': {
+      isr: 300,
+    },
+
+    '/favoris': {
+      prerender: true,
+    },
+    'a-propos': {
+      prerender: true,
+    },
+
+    '/api/trending-movies': {
+      isr: 60,
+    },
+    '/api/movies/**': {
+      isr: 3600,
     },
   },
   runtimeConfig: {
