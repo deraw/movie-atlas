@@ -14,13 +14,28 @@ export const usePageSeo = (options: UsePageSeoOptions) => {
   const baseUrl = config.public.appUrl
   const defaultOgImage = `${baseUrl}/og-default.jpg`
 
+  const TITLE_SUFFIX = ' – MovieAtlas'
+
+  const appendSuffix = (value: string) => {
+    if (!value) {
+      return value
+    }
+
+    return value.endsWith(TITLE_SUFFIX) ? value : `${value}${TITLE_SUFFIX}`
+  }
+
   const {
-    title,
+    title: titleValue,
     description,
     path = '/',
     type = 'website',
     ogImage
   } = options
+
+  const title =
+    typeof titleValue === 'function'
+      ? () => appendSuffix(titleValue())
+      : appendSuffix(titleValue)
 
   const url: SeoValue =
     typeof path === 'function'

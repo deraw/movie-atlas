@@ -2,7 +2,7 @@
   const { favorites, isReady } = useFavorites()
 
   usePageSeo({
-    title: 'Vos favoris – MovieAtlas',
+    title: 'Vos favoris',
     description: 'Retrouvez ici tous les films que vous avez ajoutés à vos favoris sur MovieAtlas.',
     path: '/favoris'
   })

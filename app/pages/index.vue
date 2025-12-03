@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  const config = useRuntimeConfig()
-
   const { data, pending, error } = await useFetch('/api/trending-movies')
 
   const movies = computed(() => data.value?.results ?? [])
@@ -17,7 +15,7 @@
   }
 
   usePageSeo({
-    title: 'Films tendance aujourd’hui - MovieAtlas',
+    title: 'Films tendance aujourd’hui',
     description: 'Top des films populaires du moment, avec synopsis, notes et recommandations.'
   })
 </script>

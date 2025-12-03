@@ -1,6 +1,6 @@
 <script setup lang="ts">
   usePageSeo({
-    title: 'Catalogue – MovieAtlas',
+    title: 'Catalogue',
     description: 'Parcourez le catalogue complet de films disponibles sur MovieAtlas.',
     path: '/catalogue'
   })

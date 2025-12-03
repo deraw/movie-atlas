@@ -37,8 +37,8 @@
   usePageSeo({
     title: () =>
       movie.value
-        ? `${movie.value.title} – MovieAtlas`
-        : 'Détails du film – MovieAtlas',
+        ? movie.value.title
+        : 'Détails du film',
     description: () =>
       movie.value?.overview ||
       'Découvrez les détails de ce film sur MovieAtlas : synopsis, note et recommandations.',

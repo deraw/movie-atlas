@@ -1,6 +1,6 @@
 <script setup lang="ts">
   usePageSeo({
-    title: 'À propos – MovieAtlas',
+    title: 'À propos',
     description: 'En savoir plus sur MovieAtlas, un projet Nuxt dédié à l’exploration de films via l’API TMDB.',
     path: '/a-propos'
   })
@@ -34,7 +34,7 @@
           <span class="block">
             MovieAtlas est avant tout un projet de démonstration technique autour de l’écosystème
             Nuxt/Vue : rendu SSR/ISR, consommation d’API côté serveur, composants réutilisables,
-            gestion d’état via composables et mise en place d’une interface responsive.
+            gestion d’état via composables et mise en place d’une interface responsive et accessible.
           </span>
 
           <span class="block mt-2">
