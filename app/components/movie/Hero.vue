@@ -21,15 +21,7 @@
 
 <template>
   <div class="relative overflow-hidden rounded-3xl bg-black">
-    <div
-      class="
-        relative
-        w-full
-        min-h-[55vh]
-        sm:min-h-80
-        lg:min-h-[420px]
-      "
-    >
+    <div class="relative w-full">
       <NuxtImg
         v-if="backdrop"
         :src="getImageUrl(backdrop, 'w1280')"
@@ -39,7 +31,16 @@
 
       <div class="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent" />
 
-      <div class="relative z-10 h-full flex items-end">
+      <div class="
+        relative
+        z-10
+        flex
+        flex-col
+        justify-end
+        min-h-[55vh]
+        sm:min-h-80
+        lg:min-h-[420px]
+      ">
         <div class="p-6 md:p-10 flex gap-6 md:gap-10 items-end w-full">
 
           <div class="hidden sm:block w-32 md:w-40 lg:w-48 shrink-0">
