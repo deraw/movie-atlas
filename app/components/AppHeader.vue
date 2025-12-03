@@ -23,7 +23,17 @@
 </script>
 
 <template>
-  <UHeader title="MovieAtlas">
+  <UHeader
+    title="MovieAtlas"
+    mode="drawer"
+  >
     <UNavigationMenu :items="items" />
+
+    <template #body>
+      <UNavigationMenu
+        :items="items"
+        orientation="vertical"
+      />
+    </template>
   </UHeader>
 </template>
