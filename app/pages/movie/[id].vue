@@ -198,13 +198,7 @@
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-          <MovieCard
-            v-for="rec in recommendations"
-            :key="rec.id"
-            :movie="rec"
-          />
-        </div>
+        <MovieGrid :movies="recommendations" />
       </section>
 
       <div class="border-t border-white/10 flex justify-center py-6 sm:py-12">

@@ -98,16 +98,10 @@
           />
         </div>
 
-        <div
+        <MovieGrid
           v-else-if="movies.length"
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4"
-        >
-          <MovieCard
-            v-for="movie in movies"
-            :key="movie.id"
-            :movie="movie"
-          />
-        </div>
+          :movies="movies"
+        />
 
         <p
           v-else

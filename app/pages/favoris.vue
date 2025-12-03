@@ -35,16 +35,10 @@
       Vous n’avez encore ajouté aucun film en favori.
     </div>
 
-    <div
+    <MovieGrid
       v-else
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-    >
-      <MovieCard
-        v-for="movie in favorites"
-        :key="movie.id"
-        :movie="movie"
-      />
-    </div>
+      :movies="favorites"
+    />
 
     <CatalogButton />
   </UContainer>
