@@ -1,8 +1,12 @@
 <template>
   <UApp>
+    <SkipToContent />
     <AppHeader />
 
-    <UMain as="main">
+    <UMain
+      id="main-content"
+      as="main"
+    >
       <NuxtPage />
     </UMain>
 
