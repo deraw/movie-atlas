@@ -18,6 +18,7 @@
       <UAlert
         variant="soft"
         title="Impossible de charger les films tendance."
+        description="Une erreur est survenue lors du chargement. Veuillez réessayer plus tard."
       />
     </section>
 
@@ -72,19 +73,13 @@
       </section>
 
       <section class="space-y-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-xl font-semibold">
-            Top 10 des films tendance aujourd’hui
-          </h2>
-
-          <UButton variant="ghost" to="/movies">
-            Voir le catalogue
-          </UButton>
-        </div>
+        <h2 class="text-xl font-semibold">
+          Top 10 des films tendance aujourd’hui
+        </h2>
 
         <div
           v-if="pending"
-          class="grid grid-cols-2 md:grid-cols-5 gap-4"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4"
         >
           <USkeleton
             v-for="i in 10"
@@ -95,7 +90,7 @@
 
         <div
           v-else-if="movies.length"
-          class="grid grid-cols-2 md:grid-cols-5 gap-4"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4"
         >
           <MovieCard
             v-for="movie in movies"
@@ -111,6 +106,18 @@
           Aucun film tendance disponible pour le moment.
         </p>
       </section>
+
+      <div class="border-t border-white/10 flex justify-center py-6 sm:py-12">
+        <UButton
+          size="lg"
+          color="neutral"
+          variant="solid"
+          class="px-6"
+          to="/movies"
+        >
+          Voir le catalogue complet
+        </UButton>
+      </div>
     </template>
   </UContainer>
 </template>
