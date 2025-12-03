@@ -113,7 +113,7 @@
           color="neutral"
           variant="solid"
           class="px-6"
-          to="/movies"
+          to="/catalogue"
         >
           Voir le catalogue complet
         </UButton>
