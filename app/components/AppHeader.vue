@@ -29,6 +29,19 @@
   >
     <UNavigationMenu :items="items" />
 
+    <template #right>
+      <UTooltip text="Ouvrir sur GitHub">
+        <UButton
+          color="neutral"
+          variant="ghost"
+          to="https://github.com/deraw/movie-atlas"
+          target="_blank"
+          icon="i-simple-icons-github"
+          aria-label="GitHub"
+        />
+      </UTooltip>
+    </template>
+
     <template #body>
       <UNavigationMenu
         :items="items"
