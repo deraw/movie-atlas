@@ -1,19 +1,17 @@
 <script setup lang="ts">
-    const props = defineProps<{
-      movie: {
-        id: number
-        title: string
-        overview: string
-        vote_average: number
-        release_date: string
-        poster_path?: string | null
-      }
-    }>()
+  import type { MovieSummary } from '#shared/types/movies'
+  const props = defineProps<{ movie: MovieSummary }>()
 
-    const { getImageUrl } = useTmdbImage()
-    const posterUrl = computed(() => getImageUrl(props.movie.poster_path, 'w342'))
+  const { getImageUrl } = useTmdbImage()
+  const posterUrl = computed(() => getImageUrl(props.movie.poster_path, 'w342'))
 
-    const { formatDateShort } = useDate()
+  const { formatDateShort } = useDate()
+
+  const { isFavorite, toggleFavorite } = useFavorites()
+
+  const onToggleFavorite = () => {
+    toggleFavorite(props.movie)
+  }
 </script>
 
 <template>
@@ -66,9 +64,12 @@
         </UButton>
 
         <UButton
+          :aria-label="isFavorite(movie.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'"
+          :icon="isFavorite(movie.id) ? 'i-heroicons-heart-solid' : 'i-heroicons-heart'"
+          :class="isFavorite(movie.id) ? 'text-red-500' : ''"
           variant="ghost"
           color="neutral"
-          icon="i-heroicons-heart"
+          @click.stop.prevent="onToggleFavorite"
         />
       </div>
     </div>

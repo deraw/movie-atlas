@@ -5,11 +5,7 @@
 
   const movieId = computed(() => route.params.id as string)
 
-  const {
-    data,
-    pending,
-    error
-  } = await useFetch(`/api/movies/${movieId.value}`, {
+  const { data, pending, error } = await useFetch(`/api/movies/${movieId.value}`, {
     watch: [movieId]
   })
 
@@ -26,6 +22,16 @@
     }
 
     isTrailerOpen.value = true
+  }
+
+  const { isFavorite, toggleFavorite } = useFavorites()
+
+  const toggleMovieFavorite = () => {
+    if (!movie.value) {
+      return
+    }
+
+    toggleFavorite(movie.value)
   }
 
   if (import.meta.server) {
@@ -128,12 +134,14 @@
           </UButton>
 
           <UButton
+            :icon="isFavorite(movie.id) ? 'i-heroicons-heart-solid' : 'i-heroicons-heart'"
+            :class="isFavorite(movie.id) ? 'text-red-500' : ''"
             variant="ghost"
             color="neutral"
-            icon="i-heroicons-heart"
+            @click="toggleMovieFavorite"
           >
             <span class="sr-only sm:not-sr-only">
-              Ajouter aux favoris
+              {{ isFavorite(movie.id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
             </span>
           </UButton>
         </template>
