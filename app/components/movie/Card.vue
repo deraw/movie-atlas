@@ -6,12 +6,6 @@
   const posterUrl = computed(() => getImageUrl(props.movie.poster_path, 'w342'))
 
   const { formatDateShort } = useDate()
-
-  const { isFavorite, toggleFavorite } = useFavorites()
-
-  const onToggleFavorite = () => {
-    toggleFavorite(props.movie)
-  }
 </script>
 
 <template>
@@ -63,14 +57,7 @@
           Détails
         </UButton>
 
-        <UButton
-          :aria-label="isFavorite(movie.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'"
-          :icon="isFavorite(movie.id) ? 'i-heroicons-heart-solid' : 'i-heroicons-heart'"
-          :class="isFavorite(movie.id) ? 'text-red-500' : ''"
-          variant="ghost"
-          color="neutral"
-          @click.stop.prevent="onToggleFavorite"
-        />
+        <FavoriteButton :movie="movie" />
       </div>
     </div>
   </UCard>

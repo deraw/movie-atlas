@@ -4,16 +4,6 @@
   const movies = computed(() => data.value?.results ?? [])
   const heroMovie = computed(() => movies.value[0])
 
-  const { isFavorite, toggleFavorite } = useFavorites()
-
-  const toggleHeroFavorite = () => {
-    if (!heroMovie.value) {
-      return
-    }
-
-    toggleFavorite(heroMovie.value)
-  }
-
   usePageSeo({
     title: 'Films tendance aujourd’hui',
     description: 'Top des films populaires du moment, avec synopsis, notes et recommandations.'
@@ -67,17 +57,10 @@
               Voir les détails
             </UButton>
 
-            <UButton
-              :icon="isFavorite(heroMovie.id) ? 'i-heroicons-heart-solid' : 'i-heroicons-heart'"
-              :class="isFavorite(heroMovie.id) ? 'text-red-500' : ''"
-              color="neutral"
-              variant="ghost"
-              @click="toggleHeroFavorite"
-            >
-              <span class="sr-only sm:not-sr-only">
-                {{ isFavorite(heroMovie.id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
-              </span>
-            </UButton>
+            <FavoriteButton
+              :movie="heroMovie"
+              show-label
+            />
           </template>
         </MovieHero>
       </section>

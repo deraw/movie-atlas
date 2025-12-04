@@ -24,16 +24,6 @@
     isTrailerOpen.value = true
   }
 
-  const { isFavorite, toggleFavorite } = useFavorites()
-
-  const toggleMovieFavorite = () => {
-    if (!movie.value) {
-      return
-    }
-
-    toggleFavorite(movie.value)
-  }
-
   usePageSeo({
     title: () =>
       movie.value
@@ -108,17 +98,10 @@
             Bande-annonce
           </UButton>
 
-          <UButton
-            :icon="isFavorite(movie.id) ? 'i-heroicons-heart-solid' : 'i-heroicons-heart'"
-            :class="isFavorite(movie.id) ? 'text-red-500' : ''"
-            variant="ghost"
-            color="neutral"
-            @click="toggleMovieFavorite"
-          >
-            <span class="sr-only sm:not-sr-only">
-              {{ isFavorite(movie.id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}
-            </span>
-          </UButton>
+          <FavoriteButton
+            :movie="movie"
+            show-label
+          />
         </template>
       </MovieHero>
 
@@ -192,11 +175,9 @@
         v-if="recommendations.length"
         class="space-y-4"
       >
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold">
-            Films recommandés
-          </h2>
-        </div>
+        <h2 class="text-lg font-semibold">
+          Films recommandés
+        </h2>
 
         <MovieGrid :movies="recommendations" />
       </section>
