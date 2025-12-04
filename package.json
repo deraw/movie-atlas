@@ -1,5 +1,5 @@
 {
-  "name": "test-leetchi-extended",
+  "name": "movie-atlas",
   "type": "module",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "eslint": "^9.39.1",
     "nuxt": "^4.2.1",
     "tailwindcss": "^4.1.17",
+    "vite-plugin-checker": "^0.11.0",
     "vue": "^3.5.25",
     "vue-router": "^4.6.3"
   },
