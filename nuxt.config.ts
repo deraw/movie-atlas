@@ -57,7 +57,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     tmdbApiUrl: 'https://api.themoviedb.org/3',
-    tmdbToken: process.env.TMDB_V4_TOKEN,
+    tmdbToken: process.env.TMDB_TOKEN,
     public: {
       tmdbImageBase: 'https://image.tmdb.org/t/p',
       appLocale: APP_LOCALE,
