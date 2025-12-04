@@ -20,10 +20,17 @@ export default defineNuxtConfig({
       title: 'MovieAtlas - Catalogue de films TMDB',
       meta: [
         { name: 'description', content: 'Catalogue de films basé sur TMDB avec Nuxt 4 + Nuxt UI' },
+        { name: 'theme-color', content: '#ffffff', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#0f172a', media: '(prefers-color-scheme: dark)' },
       ],
       htmlAttrs: {
         lang: APP_LOCALE,
       },
+      link: [
+        { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml', sizes: 'any' },
+        { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ]
     },
     pageTransition: {
       name: 'page',
