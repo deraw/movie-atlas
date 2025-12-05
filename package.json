@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nuxt/eslint": "1.11.0",
@@ -26,7 +27,12 @@
   "devDependencies": {
     "@iconify-json/heroicons": "^1.2.3",
     "@types/node": "^24.10.1",
+    "husky": "^8.0.0",
+    "lint-staged": "^16.2.7",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.1.5"
+  },
+  "lint-staged": {
+    "*.{js,mjs,ts,vue}": "eslint --fix"
   }
 }
