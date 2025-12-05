@@ -38,7 +38,7 @@ export const useFavorites = () => {
         console.error('Failed to save favorites to localStorage', e)
       }
     },
-    { deep: true }
+    { deep: true },
   )
 
   const ids = computed(() => new Set(favorites.value.map(m => m.id)))
@@ -71,6 +71,6 @@ export const useFavorites = () => {
     isFavorite,
     addFavorite,
     removeFavorite,
-    toggleFavorite
+    toggleFavorite,
   }
 }

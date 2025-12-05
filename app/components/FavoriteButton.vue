@@ -14,7 +14,7 @@
       ? undefined
       : isFavorite(props.movie.id)
         ? 'Retirer des favoris'
-        : 'Ajouter aux favoris'
+        : 'Ajouter aux favoris',
   )
 
   const handleClick = () => {

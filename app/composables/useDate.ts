@@ -21,7 +21,7 @@ export const useDate = () => {
     return new Date(iso).toLocaleDateString(config.public.appLocale, {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     })
   }
 

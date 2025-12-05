@@ -2,7 +2,7 @@
   usePageSeo({
     title: 'À propos',
     description: 'En savoir plus sur MovieAtlas, un projet Nuxt dédié à l’exploration de films via l’API TMDB.',
-    path: '/a-propos'
+    path: '/a-propos',
   })
 </script>
 

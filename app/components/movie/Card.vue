@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import type { MovieSummary } from '#shared/types/movies'
+
   const props = defineProps<{ movie: MovieSummary }>()
 
   const { getImageUrl } = useTmdbImage()
@@ -53,7 +54,10 @@
       </div>
 
       <div class="mt-4 justify-self-end flex justify-between items-center">
-        <UButton size="md" :to="`/movie/${movie.id}`">
+        <UButton
+          size="md"
+          :to="`/movie/${movie.id}`"
+        >
           Détails
         </UButton>
 

@@ -6,7 +6,7 @@
 
   usePageSeo({
     title: 'Films tendance aujourd’hui',
-    description: 'Top des films populaires du moment, avec synopsis, notes et recommandations.'
+    description: 'Top des films populaires du moment, avec synopsis, notes et recommandations.',
   })
 </script>
 

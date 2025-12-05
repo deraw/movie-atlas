@@ -1,19 +1,9 @@
 const APP_LOCALE = 'fr-FR'
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  modules: ['@nuxt/eslint', '@nuxt/test-utils', '@nuxt/ui', '@nuxt/image'],
   devtools: {
     enabled: true,
-  },
-  modules: ['@nuxt/eslint', '@nuxt/test-utils', '@nuxt/ui', '@nuxt/image'],
-  css: ['~/assets/css/main.css'],
-  typescript: {
-    typeCheck: true,
-  },
-  eslint: {
-    config: {
-      stylistic: true,
-    },
   },
   app: {
     head: {
@@ -30,11 +20,21 @@ export default defineNuxtConfig({
         { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml', sizes: 'any' },
         { rel: 'icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-      ]
+      ],
     },
     pageTransition: {
       name: 'page',
       mode: 'out-in',
+    },
+  },
+  css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    tmdbApiUrl: 'https://api.themoviedb.org/3',
+    tmdbToken: process.env.TMDB_TOKEN,
+    public: {
+      tmdbImageBase: 'https://image.tmdb.org/t/p',
+      appLocale: APP_LOCALE,
+      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:3000',
     },
   },
   routeRules: {
@@ -62,13 +62,13 @@ export default defineNuxtConfig({
       isr: 3600,
     },
   },
-  runtimeConfig: {
-    tmdbApiUrl: 'https://api.themoviedb.org/3',
-    tmdbToken: process.env.TMDB_TOKEN,
-    public: {
-      tmdbImageBase: 'https://image.tmdb.org/t/p',
-      appLocale: APP_LOCALE,
-      appUrl: process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:3000',
+  compatibilityDate: '2025-07-15',
+  typescript: {
+    typeCheck: true,
+  },
+  eslint: {
+    config: {
+      stylistic: true,
     },
   },
 })

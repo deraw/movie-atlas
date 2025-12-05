@@ -2,7 +2,7 @@
   usePageSeo({
     title: 'Catalogue',
     description: 'Parcourez le catalogue complet de films disponibles sur MovieAtlas.',
-    path: '/catalogue'
+    path: '/catalogue',
   })
 </script>
 

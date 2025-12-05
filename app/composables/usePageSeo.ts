@@ -29,22 +29,18 @@ export const usePageSeo = (options: UsePageSeoOptions) => {
     description,
     path = '/',
     type = 'website',
-    ogImage
+    ogImage,
   } = options
 
-  const title =
-    typeof titleValue === 'function'
-      ? () => appendSuffix(titleValue())
-      : appendSuffix(titleValue)
+  const title = typeof titleValue === 'function'
+    ? () => appendSuffix(titleValue())
+    : appendSuffix(titleValue)
 
-  const url: SeoValue =
-    typeof path === 'function'
-      ? () => `${baseUrl}${path()}`
-      : `${baseUrl}${path}`
+  const url: SeoValue = typeof path === 'function'
+    ? () => `${baseUrl}${path()}`
+    : `${baseUrl}${path}`
 
-  const image: SeoValue =
-    ogImage ??
-    defaultOgImage
+  const image: SeoValue = ogImage ?? defaultOgImage
 
   useSeoMeta({
     title,
@@ -61,6 +57,6 @@ export const usePageSeo = (options: UsePageSeoOptions) => {
     twitterCard: 'summary_large_image',
     twitterTitle: title,
     twitterDescription: description,
-    twitterImage: image
+    twitterImage: image,
   })
 }

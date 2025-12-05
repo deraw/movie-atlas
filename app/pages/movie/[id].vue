@@ -6,7 +6,7 @@
   const movieId = computed(() => route.params.id as string)
 
   const { data, pending, error } = await useFetch(`/api/movies/${movieId.value}`, {
-    watch: [movieId]
+    watch: [movieId],
   })
 
   const movie = computed(() => data.value?.movie)
@@ -30,20 +30,20 @@
         ? movie.value.title
         : 'Détails du film',
     description: () =>
-      movie.value?.overview ||
-      'Découvrez les détails de ce film sur MovieAtlas : synopsis, note et recommandations.',
+      movie.value?.overview
+      || 'Découvrez les détails de ce film sur MovieAtlas : synopsis, note et recommandations.',
     path: () => `/movie/${movieId.value}`,
     type: 'video.movie',
     ogImage: () => {
       if (movie.value?.backdrop_path) {
         return (
-          getImageUrl(movie.value.backdrop_path, 'w1280') ||
-          `${config.public.appUrl}/og-default.jpg`
+          getImageUrl(movie.value.backdrop_path, 'w1280')
+          || `${config.public.appUrl}/og-default.jpg`
         )
       }
 
       return `${config.public.appUrl}/og-default.jpg`
-    }
+    },
   })
 </script>
 

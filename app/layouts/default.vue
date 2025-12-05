@@ -15,7 +15,7 @@
 
       twitterCard: 'summary_large_image',
       twitterTitle: 'MovieAtlas',
-      twitterDescription: 'Découvrez les films tendance et leurs détails sur MovieAtlas.'
+      twitterDescription: 'Découvrez les films tendance et leurs détails sur MovieAtlas.',
     })
   }
 </script>

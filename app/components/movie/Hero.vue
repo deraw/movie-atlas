@@ -8,7 +8,7 @@
     runtime?: number | null
     releaseDate?: string | null
     vote?: number
-    genres?: { id: number; name: string }[]
+    genres?: { id: number, name: string }[]
     overview?: string | null
   }>()
 
@@ -31,7 +31,8 @@
 
       <div class="absolute inset-0 bg-linear-to-t from-black via-black/70 to-transparent" />
 
-      <div class="
+      <div
+        class="
         relative
         z-10
         flex
@@ -40,9 +41,9 @@
         min-h-[55vh]
         sm:min-h-80
         lg:min-h-[420px]
-      ">
+      "
+      >
         <div class="p-6 md:p-10 flex gap-6 md:gap-10 items-end w-full">
-
           <div class="hidden sm:block w-32 md:w-40 lg:w-48 shrink-0">
             <div class="relative aspect-2/3 rounded-2xl overflow-hidden shadow-lg shadow-black/50">
               <NuxtImg
@@ -133,15 +134,15 @@
               <p
                 :class="[
                   'text-sm md:text-base text-slate-100',
-                  shouldClampOverview ? 'line-clamp-3' : ''
+                  shouldClampOverview ? 'line-clamp-3' : '',
                 ]"
               >
                 {{ overview }}
               </p>
 
               <button
-                @click="expanded = !expanded"
                 class="text-xs text-slate-300 hover:underline"
+                @click="expanded = !expanded"
               >
                 {{ expanded ? 'Afficher moins' : 'Afficher plus' }}
               </button>

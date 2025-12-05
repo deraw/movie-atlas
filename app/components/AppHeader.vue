@@ -7,18 +7,18 @@
     {
       label: 'Catalogue',
       to: '/catalogue',
-      active: route.path.startsWith('/catalogue')
+      active: route.path.startsWith('/catalogue'),
     },
     {
       label: 'Favoris',
       to: '/favoris',
-      active: route.path === '/favoris'
+      active: route.path === '/favoris',
     },
     {
       label: 'À propos',
       to: '/a-propos',
-      active: route.path === '/a-propos'
-    }
+      active: route.path === '/a-propos',
+    },
   ])
 </script>
 

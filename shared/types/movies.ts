@@ -1,6 +1,6 @@
 import type {
   TmdbCastMember,
-  MovieVideo
+  MovieVideo,
 } from '#shared/types/tmdb'
 
 export interface MovieSummary {

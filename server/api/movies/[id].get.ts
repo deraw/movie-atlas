@@ -1,7 +1,6 @@
 import type { TmdbMovieResponse } from '#shared/types/tmdb'
-import type { MovieDetailsPayload } from '#shared/types/movies'
 
-import type { MovieDetails, MovieSummary } from '#shared/types/movies'
+import type { MovieDetailsPayload, MovieDetails, MovieSummary } from '#shared/types/movies'
 
 export default defineEventHandler(async (event): Promise<MovieDetailsPayload> => {
   const config = useRuntimeConfig()
@@ -10,7 +9,7 @@ export default defineEventHandler(async (event): Promise<MovieDetailsPayload> =>
   if (!id) {
     throw createError({
       statusCode: 400,
-      statusMessage: 'Missing movie id'
+      statusMessage: 'Missing movie id',
     })
   }
 
@@ -19,13 +18,13 @@ export default defineEventHandler(async (event): Promise<MovieDetailsPayload> =>
     `${config.tmdbApiUrl}/movie/${id}`,
     {
       headers: {
-        Authorization: `Bearer ${config.tmdbToken}`
+        Authorization: `Bearer ${config.tmdbToken}`,
       },
       params: {
         language: config.public.appLocale,
-        append_to_response: 'credits,recommendations,videos'
-      }
-    }
+        append_to_response: 'credits,recommendations,videos',
+      },
+    },
   )
 
   const movie: MovieDetails = {
@@ -44,37 +43,36 @@ export default defineEventHandler(async (event): Promise<MovieDetailsPayload> =>
     status: data.status,
     spoken_languages: data.spoken_languages.map(language => ({
       english_name: language.english_name,
-      iso_639_1: language.iso_639_1
+      iso_639_1: language.iso_639_1,
     })),
     budget: data.budget,
-    revenue: data.revenue
+    revenue: data.revenue,
   }
 
-  const cast: TmdbCastMember[] =
-    data.credits?.cast?.slice(0, 12) ?? []
+  const cast: TmdbCastMember[]
+    = data.credits?.cast?.slice(0, 12) ?? []
 
-  const recommendations: MovieSummary[] =
-    data.recommendations?.results?.slice(0, 10).map((movie: TmdbTrendingMovie) => ({
+  const recommendations: MovieSummary[] = data.recommendations?.results?.slice(0, 10)
+    .map((movie: TmdbTrendingMovie) => ({
       id: movie.id,
       title: movie.title,
       overview: movie.overview,
       vote_average: movie.vote_average,
       release_date: movie.release_date,
       poster_path: movie.poster_path,
-      backdrop_path: movie.backdrop_path
+      backdrop_path: movie.backdrop_path,
     })) ?? []
 
   const videos: MovieVideo[] = data.videos?.results ?? []
 
-  const trailer =
-    videos.find(
-      video => video.site === 'YouTube' && video.type === 'Trailer'
-    ) ?? null
+  const trailer = videos.find(
+    video => video.site === 'YouTube' && video.type === 'Trailer',
+  ) ?? null
 
   return {
     movie,
     cast,
     recommendations,
-    trailer
+    trailer,
   }
 })
