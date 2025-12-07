@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { fr } from '@nuxt/ui/locale'
+
   const config = useRuntimeConfig()
 
   if (import.meta.server) {
@@ -21,7 +23,7 @@
 </script>
 
 <template>
-  <UApp>
+  <UApp :locale="fr">
     <SkipToContent />
     <AppHeader />
 
