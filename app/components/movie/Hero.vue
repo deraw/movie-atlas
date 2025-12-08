@@ -17,6 +17,22 @@
 
   const { getImageUrl } = useTmdbImage()
   const { formatDate } = useDate()
+
+  const overviewRef = ref<HTMLElement | null>(null)
+  const isOverflowing = ref(false)
+
+  onMounted(() => {
+    if (!overviewRef.value) {
+      return
+    }
+
+    const element = overviewRef.value
+
+    const fullHeight = element.scrollHeight
+    const clampHeight = parseFloat(getComputedStyle(element).lineHeight) * 3
+
+    isOverflowing.value = fullHeight > clampHeight
+  })
 </script>
 
 <template>
@@ -68,7 +84,6 @@
                 <UBadge
                   v-if="status"
                   color="success"
-                  variant="soft"
                   size="sm"
                 >
                   {{ status }}
@@ -132,6 +147,7 @@
 
             <template v-if="overview">
               <p
+                ref="overviewRef"
                 :class="[
                   'text-sm md:text-base text-slate-100',
                   shouldClampOverview ? 'line-clamp-3' : '',
@@ -141,6 +157,7 @@
               </p>
 
               <button
+                v-if="isOverflowing"
                 class="text-xs text-slate-300 hover:underline"
                 @click="expanded = !expanded"
               >
