@@ -1,16 +1,30 @@
-export interface TmdbCastMember {
+// Movie List
+export interface TmdbMovie {
   id: number
-  name: string
-  character: string
-  profile_path: string | null
-  order: number
+  title: string
+  original_title: string
+  overview: string
+  poster_path: string | null
+  backdrop_path: string | null
+  release_date: string | null
+  vote_average: number
+  vote_count: number
+  popularity: number
+
+  media_type?: string
+  adult?: boolean
+  original_language?: string
+  genre_ids?: number[]
 }
 
-export interface TmdbCredits {
-  id: number
-  cast: TmdbCastMember[]
+export interface TmdbMovieListResponse {
+  page: number
+  total_pages: number
+  total_results: number
+  results: TmdbMovie[]
 }
 
+// Trending Movies
 export interface TmdbTrendingMovie {
   adult: boolean
   backdrop_path: string | null
@@ -29,13 +43,22 @@ export interface TmdbTrendingMovie {
   vote_count: number
 }
 
-export interface TmdbRecommendations {
+export interface TmdbTrendingResponse {
   page: number
   results: TmdbTrendingMovie[]
   total_pages: number
   total_results: number
 }
 
+// Recommendations
+export interface TmdbRecommendations {
+  page: number
+  results: TmdbMovie[]
+  total_pages: number
+  total_results: number
+}
+
+// Videos
 export interface MovieVideo {
   id: string
   key: string
@@ -58,6 +81,21 @@ export interface TmdbVideos {
   results: MovieVideo[]
 }
 
+// Credits
+export interface TmdbCastMember {
+  id: number
+  name: string
+  character: string
+  profile_path: string | null
+  order: number
+}
+
+export interface TmdbCredits {
+  id: number
+  cast: TmdbCastMember[]
+}
+
+// Movie Full
 export interface TmdbMovieDetails {
   adult: boolean
   backdrop_path: string | null
@@ -103,13 +141,7 @@ export interface TmdbMovieDetails {
   vote_count: number
 }
 
-export interface TmdbTrendingResponse {
-  page: number
-  results: TmdbTrendingMovie[]
-  total_pages: number
-  total_results: number
-}
-
+// Full Movie Response (details + credits + recommendations + videos)
 export interface TmdbMovieResponse extends TmdbMovieDetails {
   credits: TmdbCredits
   recommendations: TmdbRecommendations

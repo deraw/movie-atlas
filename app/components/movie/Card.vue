@@ -42,11 +42,19 @@
         </h3>
 
         <time
+          v-if="movie.release_date"
           :datetime="movie.release_date"
           class="text-slate-400"
         >
           {{ formatDateShort(movie.release_date) }}
         </time>
+
+        <span
+          v-else
+          class="text-slate-400"
+        >
+          Date inconnue
+        </span>
 
         <p class="text-sm text-slate-300 line-clamp-3">
           {{ movie.overview || 'Pas de synopsis disponible.' }}

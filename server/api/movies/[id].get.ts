@@ -1,4 +1,4 @@
-import type { TmdbMovieResponse } from '#shared/types/tmdb'
+import type { TmdbMovie, TmdbMovieResponse } from '#shared/types/tmdb'
 
 import type { MovieDetailsPayload, MovieDetails, MovieSummary } from '#shared/types/movies'
 
@@ -49,11 +49,10 @@ export default defineEventHandler(async (event): Promise<MovieDetailsPayload> =>
     revenue: data.revenue,
   }
 
-  const cast: TmdbCastMember[]
-    = data.credits?.cast?.slice(0, 12) ?? []
+  const cast: TmdbCastMember[] = data.credits?.cast?.slice(0, 12) ?? []
 
   const recommendations: MovieSummary[] = data.recommendations?.results?.slice(0, 10)
-    .map((movie: TmdbTrendingMovie) => ({
+    .map((movie: TmdbMovie) => ({
       id: movie.id,
       title: movie.title,
       overview: movie.overview,

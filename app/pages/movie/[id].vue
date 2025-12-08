@@ -1,11 +1,13 @@
 <script setup lang="ts">
+  import type { MovieDetailsPayload } from '#shared/types/movies'
+
   const route = useRoute()
   const config = useRuntimeConfig()
   const { getImageUrl } = useTmdbImage()
 
   const movieId = computed(() => route.params.id as string)
 
-  const { data, pending, error } = await useFetch(`/api/movies/${movieId.value}`, {
+  const { data, pending, error } = await useFetch<MovieDetailsPayload>(`/api/movies/${movieId.value}`, {
     watch: [movieId],
   })
 

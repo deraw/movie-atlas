@@ -8,7 +8,7 @@ export interface MovieSummary {
   title: string
   overview: string
   vote_average: number
-  release_date: string
+  release_date: string | null
   poster_path: string | null
   backdrop_path: string | null
 }
@@ -41,3 +41,18 @@ export interface MovieDetailsPayload {
   recommendations: MovieSummary[]
   trailer: MovieVideo | null
 }
+
+export interface CataloguePayload {
+  page: number
+  total_pages: number
+  total_results: number
+  results: MovieSummary[]
+}
+
+export enum SortBy {
+  Popularity = 'popularity.desc',
+  VoteAverage = 'vote_average.desc',
+  ReleaseDate = 'primary_release_date.desc',
+}
+
+export type SortByValue = `${SortBy}`
