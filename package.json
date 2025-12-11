@@ -27,6 +27,7 @@
   "devDependencies": {
     "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.78",
+    "@iconify-json/simple-icons": "^1.2.62",
     "@types/node": "^24.10.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
