@@ -12,26 +12,59 @@
     overview?: string | null
   }>()
 
-  const expanded = ref(false)
-  const shouldClampOverview = computed(() => !expanded.value)
-
   const { getImageUrl } = useTmdbImage()
   const { formatDate } = useDate()
 
-  const overviewRef = ref<HTMLElement | null>(null)
-  const isOverflowing = ref(false)
+  const expanded = ref(false)
+  const shouldClampOverview = computed(() => !expanded.value)
 
-  onMounted(() => {
-    if (!overviewRef.value) {
+  const overviewRef = ref<HTMLElement | null>(null)
+  const isOverflowing = ref(true)
+
+  function checkOverflow() {
+    const element = overviewRef.value
+
+    if (!element) {
       return
     }
 
-    const element = overviewRef.value
+    const style = getComputedStyle(element)
+    const lineHeight = parseFloat(style.lineHeight || '0')
 
+    if (!lineHeight) {
+      isOverflowing.value = false
+      return
+    }
+
+    const maxHeight = lineHeight * 3
     const fullHeight = element.scrollHeight
-    const clampHeight = parseFloat(getComputedStyle(element).lineHeight) * 3
 
-    isOverflowing.value = fullHeight > clampHeight
+    isOverflowing.value = fullHeight > maxHeight + 1
+  }
+
+  let animationId: number | null = null
+
+  function onResize() {
+    if (animationId) {
+      cancelAnimationFrame(animationId)
+    }
+
+    animationId = requestAnimationFrame(() => {
+      checkOverflow()
+    })
+  }
+
+  onMounted(() => {
+    checkOverflow()
+    window.addEventListener('resize', onResize)
+  })
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', onResize)
+
+    if (animationId) {
+      cancelAnimationFrame(animationId)
+    }
   })
 </script>
 
@@ -157,7 +190,9 @@
               </p>
 
               <button
-                v-if="isOverflowing"
+                :class="[
+                  isOverflowing ? 'opacity-100' : 'opacity-0 pointer-events-none select-none',
+                ]"
                 class="text-xs text-slate-300 hover:underline"
                 @click="expanded = !expanded"
               >
