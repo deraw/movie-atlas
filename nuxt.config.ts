@@ -28,6 +28,10 @@ export default defineNuxtConfig({
     },
   },
   css: ['~/assets/css/main.css'],
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+  },
   runtimeConfig: {
     tmdbApiUrl: 'https://api.themoviedb.org/3',
     tmdbToken: process.env.TMDB_TOKEN,

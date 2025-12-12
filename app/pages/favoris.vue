@@ -28,10 +28,7 @@
       </div>
     </div>
 
-    <div
-      v-else-if="favorites.length === 0"
-      class="text-sm text-slate-300"
-    >
+    <div v-else-if="favorites.length === 0">
       Vous n’avez encore ajouté aucun film en favori.
     </div>
 

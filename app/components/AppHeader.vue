@@ -30,6 +30,8 @@
     <UNavigationMenu :items="items" />
 
     <template #right>
+      <UColorModeButton />
+
       <UTooltip text="Ouvrir sur GitHub">
         <UButton
           color="neutral"

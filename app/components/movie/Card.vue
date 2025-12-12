@@ -44,27 +44,28 @@
         <time
           v-if="movie.release_date"
           :datetime="movie.release_date"
-          class="text-slate-400"
+          class="text-dimmed"
         >
           {{ formatDateShort(movie.release_date) }}
         </time>
 
         <span
           v-else
-          class="text-slate-400"
+          class="text-dimmed"
         >
           Date inconnue
         </span>
 
-        <p class="text-sm text-slate-300 line-clamp-3">
+        <p class="text-sm line-clamp-3">
           {{ movie.overview || 'Pas de synopsis disponible.' }}
         </p>
       </div>
 
       <div class="mt-4 justify-self-end flex justify-between items-center">
         <UButton
-          size="md"
           :to="`/movie/${movie.id}`"
+          size="md"
+          class="dark"
         >
           Détails
         </UButton>

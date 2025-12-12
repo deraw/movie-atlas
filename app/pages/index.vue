@@ -47,13 +47,17 @@
           <template #badge>
             <UBadge
               variant="solid"
+              class="dark"
             >
               Top tendance aujourd’hui
             </UBadge>
           </template>
 
           <template #actions>
-            <UButton :to="`/movie/${heroMovie.id}`">
+            <UButton
+              :to="`/movie/${heroMovie.id}`"
+              class="dark"
+            >
               Voir les détails
             </UButton>
 
@@ -86,10 +90,7 @@
           :movies="movies"
         />
 
-        <p
-          v-else
-          class="text-sm text-slate-400"
-        >
+        <p v-else>
           Aucun film tendance disponible pour le moment.
         </p>
       </section>

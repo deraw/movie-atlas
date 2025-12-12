@@ -95,6 +95,7 @@
             v-if="trailer"
             variant="solid"
             icon="i-heroicons-play"
+            class="dark"
             @click="openTrailer"
           >
             Bande-annonce
@@ -145,7 +146,7 @@
               {{ person.name }}
             </p>
 
-            <p class="text-xs text-slate-400 line-clamp-2">
+            <p class="text-xs text-dimmed line-clamp-2">
               {{ person.character }}
             </p>
           </div>

@@ -25,7 +25,10 @@
 <template>
   <UButton
     :icon="isFavorite(movie.id) ? 'i-heroicons-heart-solid' : 'i-heroicons-heart'"
-    :class="isFavorite(movie.id) ? 'text-red-500' : ''"
+    :class="[
+      isFavorite(movie.id) ? 'text-red-500' : '',
+      showLabel ? 'dark' : '',
+    ]"
     :aria-label="ariaLabel"
     :size="size ?? 'md'"
     color="neutral"

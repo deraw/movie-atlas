@@ -73,7 +73,7 @@
           Catalogue de films
         </h1>
 
-        <p class="text-slate-300">
+        <p>
           Recherchez un film par titre ou filtrez par année, tri ou note minimale, puis parcourez le
           catalogue complet.
         </p>
@@ -81,7 +81,7 @@
 
       <p
         v-if="totalResults"
-        class="text-xs text-slate-400"
+        class="text-xs text-dimmed"
         aria-live="polite"
       >
         {{ totalResultsText }}
@@ -180,6 +180,7 @@
         <UButton
           type="submit"
           color="primary"
+          class="dark"
           @click.prevent="onSubmit"
         >
           Rechercher
@@ -226,10 +227,7 @@
         </div>
       </div>
 
-      <p
-        v-else
-        class="text-slate-300"
-      >
+      <p v-else>
         Aucun film ne correspond à votre recherche pour le moment.<br>
         Modifiez les filtres ou essayez un autre titre.
       </p>

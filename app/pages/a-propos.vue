@@ -15,7 +15,7 @@
         À propos de MovieAtlas
       </h1>
 
-      <p class="text-sm md:text-base text-slate-300 max-w-2xl">
+      <p class="text-sm md:text-base max-w-2xl">
         MovieAtlas est une application de découverte de films construite avec Nuxt 4 et Nuxt UI.
         L’objectif est de proposer une expérience moderne, rapide et agréable pour explorer les
         tendances du moment, consulter les fiches de films et gérer une liste de favoris.
@@ -30,7 +30,7 @@
           </h2>
         </template>
 
-        <p class="text-sm text-slate-300 space-y-2">
+        <p class="text-sm space-y-2">
           <span class="block">
             MovieAtlas est avant tout un projet de démonstration technique autour de l’écosystème
             Nuxt/Vue : rendu SSR/ISR, consommation d’API côté serveur, composants réutilisables,
@@ -52,9 +52,9 @@
           </h2>
         </template>
 
-        <ul class="list-disc list-inside space-y-1 text-sm text-slate-300">
+        <ul class="list-disc list-inside space-y-1 text-sm">
           <li>Nuxt 4 (SSR, ISR, composables, server routes)</li>
-          <li>Vue 3 &lt;script setup&gt;</li>
+          <li>Vue 3 <code class="px-1 py-0.5 rounded bg-elevated text-[0.75rem]">&lt;script setup&gt;</code></li>
           <li>Nuxt UI (design system & composants UI)</li>
           <li>Nuxt Image (optimisation des visuels TMDB)</li>
           <li>TypeScript (types TMDB & API internes)</li>
@@ -71,7 +71,7 @@
           </h2>
         </template>
 
-        <p class="text-sm text-slate-300 space-y-2">
+        <p class="text-sm space-y-2">
           <span class="block">
             Toutes les données de films (titres, affiches, synopsis, notes, casting, recommandations,
             bandes-annonces) proviennent de l’API de
@@ -80,7 +80,7 @@
 
           <span class="block mt-2">
             Les appels vers TMDB sont effectués côté serveur via les routes
-            <code class="px-1 py-0.5 rounded bg-slate-900 text-[0.75rem]">/api</code> de Nuxt,
+            <code class="px-1 py-0.5 rounded bg-elevated text-[0.75rem]">/api</code> de Nuxt,
             ce qui permet de garder la clé API sécurisée et de bénéficier du cache et du rendu
             pré-calculé (ISR).
           </span>
@@ -94,7 +94,7 @@
           </h2>
         </template>
 
-        <p class="text-sm text-slate-300 space-y-2">
+        <p class="space-y-2">
           <span class="block">
             MovieAtlas n’est pas un service commercial, mais un projet technique. Les fonctionnalités
             sont volontairement ciblées : tendances, détails, favoris locaux et navigation simple.
@@ -116,14 +116,14 @@
           </h2>
         </template>
 
-        <div class="space-y-3 text-sm text-slate-300">
+        <div class="space-y-3 text-sm">
           <p>
             MovieAtlas utilise l’API de The Movie Database (TMDB), mais n’est ni approuvé ni
             certifié par TMDB. Toutes les images, logos et métadonnées de films restent la propriété
             de leurs détenteurs respectifs.
           </p>
 
-          <p class="text-xs text-slate-400">
+          <p class="text-xs text-dimmed">
             « This product uses the TMDB API but is not endorsed or certified by TMDB. »
           </p>
         </div>
