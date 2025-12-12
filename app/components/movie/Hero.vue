@@ -198,11 +198,11 @@
               >
                 {{ expanded ? 'Afficher moins' : 'Afficher plus' }}
               </button>
-
-              <div class="pt-2 flex flex-wrap gap-3">
-                <slot name="actions" />
-              </div>
             </template>
+
+            <div class="pt-2 flex flex-wrap gap-3">
+              <slot name="actions" />
+            </div>
           </div>
         </div>
       </div>
