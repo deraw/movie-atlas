@@ -56,3 +56,15 @@ export enum SortBy {
 }
 
 export type SortByValue = `${SortBy}`
+
+export interface QueryParamsSearch {
+  page: number
+  search: string
+}
+
+export interface QueryParamsFilter {
+  page: number
+  year: string
+  sortBy: SortByValue
+  minVote: string
+}

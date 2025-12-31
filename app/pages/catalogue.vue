@@ -10,8 +10,13 @@
     year,
     sortBy,
     minVoteNumber,
+
     page,
+
     query,
+
+    readFromRouteQuery,
+    setRouteQuery,
     applyFilters,
     resetFilters,
   } = useCatalogFilters()
@@ -23,7 +28,9 @@
   ]
 
   const currentYear = new Date().getFullYear()
-  const yearItems = Array.from({ length: 60 }, (_, i) => String(currentYear - i))
+  const yearItems = Array.from({ length: 100 }, (_, i) => String(currentYear - i))
+
+  readFromRouteQuery()
 
   const { data, pending, error } = await useFetch('/api/movies/catalogue', {
     params: query,
@@ -56,6 +63,7 @@
     }
 
     applyFilters()
+    setRouteQuery()
   }
 
   usePageSeo({
@@ -223,6 +231,7 @@
             :items-per-page="20"
             :total="maxPage * 20"
             aria-label="Pagination du catalogue de films"
+            @update:page="setRouteQuery"
           />
         </div>
       </div>

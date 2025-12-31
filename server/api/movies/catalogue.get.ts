@@ -11,7 +11,7 @@ export default defineEventHandler(async (event): Promise<CataloguePayload> => {
 
   const query = getQuery(event) as Partial<{
     page: string
-    query: string
+    search: string
     year: string
     sortBy: SortByValue
     minVote: string
@@ -31,7 +31,7 @@ export default defineEventHandler(async (event): Promise<CataloguePayload> => {
   const year = query.year || undefined
   const sortBy = query.sortBy ?? SortBy.Popularity
   const minVote = query.minVote ? Number.parseFloat(query.minVote) : undefined
-  const searchQuery = query.query?.trim() || undefined
+  const searchQuery = query.search?.trim() || undefined
 
   const isSearch = Boolean(searchQuery)
   const endpoint = isSearch ? '/search/movie' : '/discover/movie'

@@ -1,4 +1,4 @@
-import { SortBy, type SortByValue } from '#shared/types/movies'
+import { SortBy, type SortByValue, type QueryParamsSearch, type QueryParamsFilter } from '#shared/types/movies'
 
 export enum Modes {
   SEARCH = 'search',
@@ -6,28 +6,28 @@ export enum Modes {
 }
 
 export interface FiltersApplied {
-  query: string
-  year: string
-  sortBy: SortByValue
-  minVote: string
   mode: Modes
-}
-
-export interface QueryParamsSearch {
-  page: number
-  query: string
-}
-
-export interface QueryParamsFilter {
-  page: number
+  search: string
   year: string
   sortBy: SortByValue
   minVote: string
+}
+
+function toInt(value: unknown, fallback = 1) {
+  const number = Number.parseInt(String(value ?? ''), 10)
+
+  return Number.isFinite(number) && number >= 1 ? number : fallback
+}
+
+function isSortBy(value: unknown): value is SortByValue {
+  return value === SortBy.Popularity || value === SortBy.VoteAverage || value === SortBy.ReleaseDate
 }
 
 export const useCatalogFilters = () => {
-  const mode = ref<Modes>(Modes.SEARCH)
+  const route = useRoute()
+  const router = useRouter()
 
+  const mode = ref<Modes>(Modes.SEARCH)
   const search = ref('')
   const year = ref('')
   const sortBy = ref<SortByValue>(SortBy.Popularity)
@@ -41,31 +41,83 @@ export const useCatalogFilters = () => {
 
   const page = ref(1)
 
-  const appliedFilters = ref<FiltersApplied>({
-    query: '',
+  const applied = ref<FiltersApplied>({
+    mode: Modes.SEARCH,
+    search: '',
     year: '',
     sortBy: SortBy.Popularity,
     minVote: '',
-    mode: Modes.SEARCH,
   })
 
-  const query = computed<QueryParamsSearch | QueryParamsFilter>(() => {
-    const params = {} as QueryParamsSearch & QueryParamsFilter
+  function readFromRouteQuery() {
+    const routeQuery = route.query
 
-    if (appliedFilters.value.mode === 'search') {
-      params.query = appliedFilters.value.query
+    applied.value.mode = routeQuery.mode as Modes ?? Modes.SEARCH
+
+    if (applied.value.mode === Modes.SEARCH) {
+      applied.value.search = String(routeQuery.search ?? '').trim()
     } else {
-      params.year = appliedFilters.value.year
-      params.sortBy = appliedFilters.value.sortBy
-      params.minVote = appliedFilters.value.minVote
+      applied.value.sortBy = isSortBy(sortBy) ? sortBy : SortBy.Popularity
+      applied.value.year = String(routeQuery.year ?? '').trim()
+      applied.value.minVote = String(routeQuery.minVote ?? '')
+    }
+
+    mode.value = applied.value.mode
+    search.value = applied.value.search
+    year.value = applied.value.year
+    sortBy.value = applied.value.sortBy
+    minVote.value = applied.value.minVote
+    page.value = toInt(routeQuery.page, 1)
+  }
+
+  function getRouteQuery() {
+    const routeQuery: Record<string, string> = {
+      mode: mode.value,
+      page: String(page.value),
+    }
+
+    if (mode.value === Modes.SEARCH) {
+      if (applied.value.search) {
+        routeQuery.search = applied.value.search
+      }
+    } else {
+      routeQuery.sortBy = applied.value.sortBy
+
+      if (applied.value.year) {
+        routeQuery.year = applied.value.year
+      }
+
+      if (applied.value.minVote) {
+        routeQuery.minVote = applied.value.minVote
+      }
+    }
+
+    return routeQuery
+  }
+
+  async function setRouteQuery() {
+    await router.push({ query: getRouteQuery() })
+  }
+
+  const query = computed<QueryParamsSearch | QueryParamsFilter>(() => {
+    const params = {
+      page: Math.max(1, Math.min(500, page.value)),
+    } as QueryParamsSearch & QueryParamsFilter
+
+    if (applied.value.mode === 'search') {
+      params.search = applied.value.search
+    } else {
+      params.year = applied.value.year
+      params.sortBy = applied.value.sortBy
+      params.minVote = applied.value.minVote
     }
 
     return params
   })
 
   const applyFilters = () => {
-    appliedFilters.value = {
-      query: search.value.trim(),
+    applied.value = {
+      search: search.value.trim(),
       year: year.value.trim(),
       sortBy: sortBy.value,
       minVote: minVote.value.trim(),
@@ -95,9 +147,11 @@ export const useCatalogFilters = () => {
 
     page,
 
-    appliedFilters,
+    applied,
     query,
 
+    readFromRouteQuery,
+    setRouteQuery,
     applyFilters,
     resetFilters,
   }
