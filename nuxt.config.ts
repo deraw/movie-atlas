@@ -62,9 +62,6 @@ export default defineNuxtConfig({
     '/api/trending-movies': {
       isr: 60,
     },
-    '/api/movies/**': {
-      isr: 3600,
-    },
   },
   compatibilityDate: '2025-07-15',
   typescript: {
