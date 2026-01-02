@@ -1,4 +1,5 @@
 import { computed, onMounted, ref, watch } from 'vue'
+import { isClient } from '~/utils/runtime'
 
 const STORAGE_KEY = 'movieatlas:favorites'
 
@@ -7,7 +8,7 @@ export const useFavorites = () => {
   const isReady = ref(false)
 
   onMounted(() => {
-    if (!import.meta.client) {
+    if (!isClient()) {
       return
     }
 
@@ -28,7 +29,7 @@ export const useFavorites = () => {
   watch(
     favorites,
     (value) => {
-      if (!import.meta.client) {
+      if (!isClient()) {
         return
       }
 

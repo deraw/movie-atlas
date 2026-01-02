@@ -36,7 +36,7 @@
     @click="handleClick"
   >
     <span
-      v-if="showLabel"
+      v-show="showLabel"
       class="sr-only sm:not-sr-only"
     >
       {{ isFavorite(movie.id) ? 'Retirer des favoris' : 'Ajouter aux favoris' }}

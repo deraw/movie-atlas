@@ -57,7 +57,7 @@ export const useCatalogFilters = () => {
     if (applied.value.mode === Modes.SEARCH) {
       applied.value.search = String(routeQuery.search ?? '').trim()
     } else {
-      applied.value.sortBy = isSortBy(sortBy) ? sortBy : SortBy.Popularity
+      applied.value.sortBy = isSortBy(routeQuery.sortBy) ? routeQuery.sortBy : SortBy.Popularity
       applied.value.year = String(routeQuery.year ?? '').trim()
       applied.value.minVote = String(routeQuery.minVote ?? '')
     }
@@ -131,6 +131,7 @@ export const useCatalogFilters = () => {
     search.value = ''
     year.value = ''
     sortBy.value = SortBy.Popularity
+    minVote.value = ''
     minVoteNumber.value = null
     mode.value = Modes.SEARCH
 

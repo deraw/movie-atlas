@@ -1,9 +1,10 @@
 <script setup lang="ts">
   import { fr } from '@nuxt/ui/locale'
+  import { isServer } from '~/utils/runtime'
 
   const config = useRuntimeConfig()
 
-  if (import.meta.server) {
+  if (isServer()) {
     useSeoMeta({
       title: 'MovieAtlas – Explorez les films tendance',
       description: 'MovieAtlas vous permet de découvrir les films tendance, leurs détails, bandes-annonces et recommandations, propulsé par TMDB.',

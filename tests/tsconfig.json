@@ -1,0 +1,12 @@
+{
+  "extends": "../.nuxt/tsconfig.node.json",
+  "include": ["**/*.ts", "**/*.tsx", "**/*.vue"],
+  "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+        "~/*": ["./app/*"],
+        "@/*": ["./app/*"],
+        "#shared/*": ["./shared/*"]
+    }
+  }
+}
