@@ -4,6 +4,13 @@ export default defineVitestConfig({
   test: {
     environment: 'nuxt',
     globals: true,
+    exclude: [
+      'tests/e2e/**',
+      'node_modules/**',
+      '.nuxt/**',
+      'dist/**',
+      'coverage/**',
+    ],
 
     coverage: {
       provider: 'v8',
@@ -17,6 +24,7 @@ export default defineVitestConfig({
         'utils/**/*.ts',
       ],
       exclude: [
+        'tests/e2e/**',
         'utils/runtime.ts',
         '**/*.d.ts',
         '**/*.test.ts',
