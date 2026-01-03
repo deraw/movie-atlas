@@ -5,8 +5,8 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "test": "vitest --coverage",
-    "test:run": "vitest run --coverage",
+    "test:unit": "vitest --coverage",
+    "test:unit:run": "vitest run --coverage",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
