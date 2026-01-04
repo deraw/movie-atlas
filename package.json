@@ -5,8 +5,8 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "test:unit": "vitest --coverage",
-    "test:unit:run": "vitest run --coverage",
+    "test:unit": "vitest run --coverage",
+    "test:e2e": "nuxt build && playwright test",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -30,6 +30,7 @@
     "@iconify-json/lucide": "^1.2.78",
     "@iconify-json/simple-icons": "^1.2.62",
     "@nuxt/test-utils": "3.20.1",
+    "@playwright/test": "^1.57.0",
     "@types/node": "^24.10.1",
     "@vitest/coverage-v8": "^4.0.16",
     "@vue/test-utils": "^2.4.6",
